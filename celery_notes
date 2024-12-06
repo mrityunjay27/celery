@@ -1,0 +1,102 @@
+-----Celery--------
+https://docs.celeryq.dev/en/latest/django/first-steps-with-django.html
+
+1.  Celery is an open-source distributed task queue in Python that allows you to execute tasks
+    asynchronously, outside the normal request/response flow of an application.
+    It’s commonly used for handling tasks like sending emails, processing long-running computations,
+    or integrating with external systems.
+
+2. Key Features of Celery
+
+    ->Asynchronous Task Execution:Run tasks in the background without blocking the main application.
+    ->Distributed System: Distribute tasks across multiple worker nodes, enabling horizontal scaling.
+    ->Scheduling: Supports periodic tasks with schedules (like cron jobs) using a scheduler like Celery Beat.
+    ->Task Queues: Uses message brokers (e.g., RabbitMQ, Redis) to store and manage tasks.
+    ->Result Backend: Tracks task statuses and results using databases, key-value stores, or other backends.
+
+
+3. Typical Celery Architecture
+    ->Producer: Application that submits tasks to the queue.
+    ->Broker: Manages task queues (e.g., RabbitMQ or Redis).
+    ->Workers: Processes the tasks in the queue.
+    ->Result Backend: Stores task results and states.
+
+
+4. Working of Celery
+
++-------+          +-------------------------------+          +------------------+
+| User  |  ---->   |         Application           |  ---->   |  Message Broker  |
++-------+          | - Generate a/c statement      |          |  (Redis/RabbitMQ)|
+                   | - Enqueue task to broker      |          +------------------+
+                   +-------------------------------+                    |
+                                                                       \|/
+                                                          +--------------------------+
+                                                          |      Celery Worker       |
+                                                          |  - Monitors for new task |
+                                                          |  - Executes tasks:       |
+                                                          |      * Process 1         |
+                                                          |      * Process 2         |
+                                                          |      * Process 3         |
+                                                          +--------------------------+
+                                                                       |
+                                                                       \|/
+                                                          +--------------------------+
+                                                          |    Result Backend         |
+                                                          |  (Redis/DB stores result) |
+                                                          +--------------------------+
+                                                                       |
+                                                                       \|/
+                                                              +-----------------+
+                                                              |    Response     |
+                                                              +-----------------+
+                                                                       |
+                                                                       \|/
+                                                              +-------+
+                                                              | User  |
+                                                              +-------+
+
+
+
+    Note: There can be multiple celery worker on different machines/instances.
+
+5. Celery and Django celery are different. Later comes with ORM support, configured in django config etc.
+
+6. Functions-
+    -> apply_async() :
+        Enqueue task for asynchronous execution. Function gives more control over the task execution
+        by allowing to set various options explicitly.
+        Returns AsyncResult object which is used to track the status and result of the task.
+
+        Syntax:
+        result = my_task.apply_async(args=[arg1,arg2], kwargs={"key":"value"},
+                                        countdown=10, expires=60)
+        args and kwargs are to pass to task function.
+        countdown: Seconds to delay the task execution from current time.
+        expires: Max time until the task is considered expired and will not be executed if it has not started yet.
+
+    -> delay() :
+        Shorthand for calling apply_async() with default options, convenient for simple task enqueuing.
+        result = my_task(arg1, arg2, keyword_arg="value")
+
+7. AsyncResult Object:
+          Used to track the state and result of a task that has been executed asynchronously.
+          When you submit a Celery task using .delay() or .apply_async(),
+          it returns an AsyncResult object that you can use to query the status, result,
+          or any potential errors of the task.
+
+    Attribute/Method
+        id:	The unique ID of the task.
+        status:	The current status of the task (e.g., PENDING, STARTED, SUCCESS, FAILURE).
+        ready():	Returns True if the task has finished executing (either successfully or with a failure).
+        successful():	Returns True if the task completed successfully.
+        failed():	Returns True if the task failed.
+        get():	Retrieves the result of the task (blocks until the task is finished if it's not ready).
+        result:	Returns the result of the task (if it has completed).
+        traceback:	If the task failed, returns the traceback of the exception.
+        forget():	Deletes the task's result from the backend (if stored).
+
+
+
+
+
+
