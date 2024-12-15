@@ -95,6 +95,16 @@ https://docs.celeryq.dev/en/latest/django/first-steps-with-django.html
         traceback:	If the task failed, returns the traceback of the exception.
         forget():	Deletes the task's result from the backend (if stored).
 
+8. As Windows natively does not support Redis. I am using docker
+    Open/Run docker engine.
+    Run this commend:
+    Start redis on docker: docker run --name redis -p 6379:6379 -d redis
+    Start celery: celery -A celeryproject worker -l info -P solo
+    To stop: docker stop redis
+    For more refer chat gpt : docker redis
+
+
+9. If multiple tasks are enqueued they run parally by different workers
 
 
 
