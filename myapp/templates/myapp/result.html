@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Result</title>
 </head>
 <body>
     <nav>
@@ -13,11 +13,14 @@
 
         </ul>
     </nav>
-    <h1>Home Page</h1>
+    <h1>Result Page</h1>
     <hr/>
-    {% if result.id %}
-    <p>Task ID: {{ result.id }}</p>
-    <a href="{% url 'check_result' result.id %}">Check Task Result </a>
+    {% if result %}
+    <h5>Task ID: {{result.id}}</h5>
+    <h5>Task ID: {{result.task_id}}</h5>
+    <h5>Task State: {{result.state}}</h5>
+    <h5>Task Status: {{result.status}}</h5>
+    <h5>Task Value: {{result.value}}</h5>
     {% endif %}
 </body>
 </html>
