@@ -19,7 +19,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 # Load task modules from all registered Django apps.
 app.autodiscover_tasks()
 
-@app.task()
+@app.task(name="Addition_Task")
 def add(x,y):
     sleep(19)  # Sleep to make ut async
     return x +y
