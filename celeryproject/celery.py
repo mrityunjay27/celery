@@ -9,6 +9,11 @@ from celery import Celery
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'celeryproject.settings')
 
 app = Celery('celeryproject')
+app.conf.update(
+    imports=[
+        'myapp.tasks',
+    ]
+)
 
 # Using a string here means the worker doesn't have to serialize
 # the configuration object to child processes.

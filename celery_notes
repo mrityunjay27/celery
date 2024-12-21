@@ -112,6 +112,11 @@ pip install django-celery-results
 Refer extension part:
     https://docs.celeryq.dev/en/latest/django/first-steps-with-django.html
 
+10. Celery Beat: To run task periodically.
+    Run celery beat along with celery worker and django app.
+    celery -A celeryproject beat -l info
+
+    There is a django celery beat also.
 
 
 

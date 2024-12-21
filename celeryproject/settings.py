@@ -132,4 +132,14 @@ CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
 # to be written on backend and visible to Admin panel
 CELERY_RESULT_EXTENDED = True
 
+# CELERY BEAT
+# Method 1
+CELERY_BEAT_SCHEDULE = {
+    'every-10-seconds': {
+        'task': 'myapp.tasks.clear_session_cache',
+        'schedule': 10,
+        'args': (10101,),
+    },
+
+}
 
