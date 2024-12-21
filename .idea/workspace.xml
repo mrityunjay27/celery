@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="af74e131-60d0-4840-8e01-7375af398ca6" name="Changes" comment="Celery beat method 2, defining in celery file, timedelta, crontab">
+    <list default="true" id="af74e131-60d0-4840-8e01-7375af398ca6" name="Changes" comment="Use of django celery beat, task config from admin panel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/celery_notes" beforeDir="false" afterPath="$PROJECT_DIR$/celery_notes" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/celeryproject/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/celeryproject/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myapp/tasks.py" beforeDir="false" afterPath="$PROJECT_DIR$/myapp/tasks.py" afterDir="false" />
     </list>
@@ -108,7 +106,15 @@
       <option name="project" value="LOCAL" />
       <updated>1734800121294</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Use of django celery beat, task config from admin panel">
+      <option name="closed" value="true" />
+      <created>1734801794642</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1734801794642</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -129,6 +135,7 @@
     <MESSAGE value="Result back end to django-db orm, custom name to task" />
     <MESSAGE value="Celery beat method 1, defining in settings file" />
     <MESSAGE value="Celery beat method 2, defining in celery file, timedelta, crontab" />
-    <option name="LAST_COMMIT_MESSAGE" value="Celery beat method 2, defining in celery file, timedelta, crontab" />
+    <MESSAGE value="Use of django celery beat, task config from admin panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="Use of django celery beat, task config from admin panel" />
   </component>
 </project>
