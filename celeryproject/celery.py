@@ -1,5 +1,7 @@
 import os
+from datetime import timedelta
 from time import sleep
+from celery.schedules import crontab
 
 from django.conf import settings
 
@@ -29,6 +31,31 @@ def add(x,y):
     sleep(19)  # Sleep to make ut async
     return x +y
 
-# @app.task(bind=True, ignore_result=True)
-# def debug_task(self):
-#     print(f'Request: {self.request!r}')
+# Method 2 of running task with celery beat.
+# app.conf.beat_schedule = {
+#     'every-10-seconds': {
+#             'task': 'myapp.tasks.clear_session_cache',
+#             'schedule': 10,
+#             'args': (10101,),
+#         },
+# }
+
+
+# # Use of timedelta
+# app.conf.beat_schedule = {
+#     'every-10-seconds': {
+#             'task': 'myapp.tasks.clear_session_cache',
+#             'schedule': timedelta(seconds = 10),
+#             'args': (10101,),
+#         },
+# }
+
+# Use of crontab
+# Advantage over time delta : Specific time points (e.g., every minute or daily at 6 PM).
+app.conf.beat_schedule = {
+    'every-10-seconds': {
+            'task': 'myapp.tasks.clear_session_cache',
+            'schedule': crontab(minute='*/1'),  # Runs every 1 minute
+            'args': (10101,),
+        },
+}
