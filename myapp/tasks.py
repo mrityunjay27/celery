@@ -10,3 +10,9 @@ def sub(x, y):
 def clear_session_cache(ids):
     print("Session cleared: ", ids)
     return ids
+
+@shared_task()
+def clear_redis_data(key):
+    # Configured this from admin panel with the help of django celery beat.
+    print("Redis data cleared: ", key)
+    return key

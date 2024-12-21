@@ -116,7 +116,13 @@ Refer extension part:
     Run celery beat along with celery worker and django app.
     celery -A celeryproject beat -l info
 
-    There is a django celery beat also.
+11. There is a django celery beat also. In this schedules can be stores in db.  https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html
+        pip install django-celery-beat
+        The default scheduler is the celery.beat.PersistentScheduler,
+        But in this we will use DatabaseScheduler , ( define in settings.py)
+
+        With this we can schedule from admin panel. (Form kind of thing is there)
+        After migration of django-celery-beat, all tables will be visible in admin panel and from there periodic task can be configured.
 
 
 
